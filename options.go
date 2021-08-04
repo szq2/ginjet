@@ -6,10 +6,11 @@ type RenderOptions struct {
 	ContentType string
 }
 
+
 // Default options
 func DefaultOptions() *RenderOptions {
 	return &RenderOptions{
-		TemplateDir: "./templates",
+		TemplateDir: "./views",
 		ContentType: "text/html; charset=utf-8",
 	}
 }
