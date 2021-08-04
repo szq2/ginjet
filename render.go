@@ -13,6 +13,7 @@ type JetRender struct {
 	Options  *RenderOptions
 	Template *jet.Template
 	Data     interface{}
+	global interface{}
 }
 
 // New creates a new JetRender instance with custom Options.
@@ -27,8 +28,18 @@ func Default() *JetRender {
 	return New(DefaultOptions())
 }
 
+func (r JetRender) AddGlobal(data interface{}){
+	r.global=data
+}
+
 func (r JetRender) Instance(name string, data interface{}) render.Render {
 	set := jet.NewHTMLSet(r.Options.TemplateDir)
+	
+	varMap, _ := r.global.(map[string]interface{})
+	for key, value := range varMap {
+		set.AddGlobal(key, value)
+	}
+	
 	t, err := set.GetTemplate(name)
 
 	if err != nil {
