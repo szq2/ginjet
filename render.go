@@ -13,7 +13,7 @@ type JetRender struct {
 	Options  *RenderOptions
 	Template *jet.Template
 	Data     interface{}
-	Set *Set
+	Set *jet.Set
 }
 
 // New creates a new JetRender instance with custom Options.
