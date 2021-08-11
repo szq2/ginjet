@@ -2,6 +2,7 @@ package ginjet
 
 import (
 	"github.com/CloudyKit/jet"
+	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/render"
 	"github.com/fatih/structs"
 	"net/http"
@@ -70,7 +71,7 @@ func (r JetRender) Instance(name string, data interface{}) render.Render {
 		}
 	}
 
-	fmt.Println(v)
+	//fmt.Println(v)
 	
 	return JetRender{
 		Data:     data,
@@ -82,9 +83,9 @@ func (r JetRender) Instance(name string, data interface{}) render.Render {
 
 func (r JetRender) AddGlobal(key string, value interface{}) {
 	if r.globals == nil {
-		r.globals = make(jet.VarMap)
+		r.globals = make(map[string]interface{})
 	}
-	r.globals[key] = reflect.ValueOf(value)
+	r.globals[key] = value
 }
 
 func (r JetRender) AddGlobalFunc(key string, fn jet.Func) {
