@@ -17,7 +17,7 @@ type JetRender struct {
 	Variables jet.VarMap
 	Data     interface{}
 	
-	globals jet.VarMap
+	globals map[string]interface{}
 }
 
 // New creates a new JetRender instance with custom Options.
